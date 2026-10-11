@@ -1,7 +1,9 @@
 using UnityEngine;
 
 public class Farmer : INPC {
-    public void Speak() {
-        Debug.Log("You reap what you sow!");
+    private string text = "You reap what you sow!";
+    public string Speak() {
+        Debug.Log(text);
+        return text;
     }
 }

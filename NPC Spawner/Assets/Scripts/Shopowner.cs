@@ -1,7 +1,9 @@
 using UnityEngine;
 
 public class Shopowner : INPC {
-    public void Speak() {
-        Debug.Log("Do you wish to purchase something?");
+    private string text = "Do you wish to purchase something?";
+    public string Speak() {
+        Debug.Log(text);
+        return text;
     }
 }
