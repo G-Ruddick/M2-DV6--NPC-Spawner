@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public enum NPCType { Farmer, Beggar, Shopowner }
+public enum NPCType { Farmer, Beggar, Shopowner, Teacher, Criminal, PoliceOfficer }
 
 public class NPCFactory : MonoBehaviour {
     public INPC GetNPC(NPCType type) {
@@ -14,6 +14,15 @@ public class NPCFactory : MonoBehaviour {
             case NPCType.Shopowner:
                 INPC shopowner = new Shopowner();
                 return shopowner;
+            case NPCType.Teacher:
+                INPC teacher = new Teacher();
+                return teacher;
+            case NPCType.Criminal:
+                INPC criminal = new Criminal();
+                return criminal;
+            case NPCType.PoliceOfficer:
+                INPC policeOfficer = new PoliceOfficer();
+                return policeOfficer;
         }
 
         return null;
