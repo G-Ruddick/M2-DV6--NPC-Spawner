@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class Farmer : INPC {
+public class Farmer : MonoBehaviour, INPC {
     private string text = "You reap what you sow!";
     public string Speak() {
-        Debug.Log(text);
+        // Debug.Log(text);
         return text;
     }
 }

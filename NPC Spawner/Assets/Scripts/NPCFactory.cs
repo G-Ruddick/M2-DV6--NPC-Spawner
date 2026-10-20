@@ -1,30 +1,48 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public enum NPCType { Farmer, Beggar, Shopowner, Teacher, Criminal, PoliceOfficer }
 
 public class NPCFactory : MonoBehaviour {
-    public INPC GetNPC(NPCType type) {
+    public GameObject farmer, beggar, shopowner, teacher, criminal, policeOfficer;
+    private List<GameObject> NPC = new List<GameObject>();
+    
+    public NPCPrefab GetNPC(NPCType type, bool multispawn, float spawnPosition) {
+        if (!multispawn) {
+            while (NPC.Count > 0) {
+                Destroy(NPC[0]);
+
+                NPC.RemoveAt(0);
+            }
+        }
+
         switch (type) {
             case NPCType.Beggar:
-                INPC beggar = new Beggar();
-                return beggar;
+                return CreateNPC(beggar, spawnPosition);
+
             case NPCType.Farmer:
-                INPC farmer = new Farmer();
-                return farmer;
+                return CreateNPC(farmer, spawnPosition);
+
             case NPCType.Shopowner:
-                INPC shopowner = new Shopowner();
-                return shopowner;
+                return CreateNPC(shopowner, spawnPosition);
+
             case NPCType.Teacher:
-                INPC teacher = new Teacher();
-                return teacher;
+                return CreateNPC(teacher, spawnPosition);
+
             case NPCType.Criminal:
-                INPC criminal = new Criminal();
-                return criminal;
+                return CreateNPC(criminal, spawnPosition);
+
             case NPCType.PoliceOfficer:
-                INPC policeOfficer = new PoliceOfficer();
-                return policeOfficer;
+                return CreateNPC(policeOfficer, spawnPosition);
         }
 
         return null;
+    }
+
+    private NPCPrefab CreateNPC(GameObject person, float spawnPosition) {
+        GameObject npc = Instantiate(person, new Vector3(spawnPosition, 0.5f, 0), Quaternion.identity);
+        NPCPrefab villager = npc.GetComponent<NPCPrefab>();
+        NPC.Add(npc);
+        return villager;
     }
 }

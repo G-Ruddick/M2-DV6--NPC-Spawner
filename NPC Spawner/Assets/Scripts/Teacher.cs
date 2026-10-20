@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class Teacher : INPC {
+public class Teacher : MonoBehaviour, INPC {
     private string text = "Time for school.";
     public string Speak() {
-        Debug.Log(text);
+        // Debug.Log(text);
         return text;
     }
 }
